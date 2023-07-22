@@ -1,14 +1,31 @@
 
+import { onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import router from './Routes/Routes';
-import Main from './components/Main';
+import { getUser, toggoleLoading } from './components/Features/auth/authSlice';
+import auth from './firebase/firebase.config';
 
 function App() {
-  console.log(process.env);
+  const dispatch = useDispatch();
+  
+  // in every render this root component will be render
+  // that's why we set the onAuthStateChanged here
+  useEffect(() => {
+    onAuthStateChanged(auth,(user) => {
+      if(user){
+          dispatch(getUser(user?.email))
+      }else{
+        dispatch(toggoleLoading())
+      }
+    })
+  },[])
+
+  
   return (
     <div>
         <RouterProvider router={router}>
-           <Main></Main>
         </RouterProvider>
     </div>
   );

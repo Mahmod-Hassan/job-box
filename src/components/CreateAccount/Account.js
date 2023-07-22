@@ -10,7 +10,7 @@ const Account = () => {
              </div>
 
                {/* right side div */}
-               <div className='md:w-1/2 p-5 text-center'>
+               <div className='md:w-1/2 p-5'>
                    <div className='max-w-md mx-auto shadow-md p-5'>
                       <img className="w-8 mx-auto" src="https://merakiui.com/images/logo.svg" alt="" />
                       <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Welcome Back</h3>

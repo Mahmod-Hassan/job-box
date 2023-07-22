@@ -2,7 +2,7 @@ import React from 'react';
 import { HiOutlineSearch } from "react-icons/hi";
 const Banner = () => {
     return (
-        <div className='flex flex-col md:flex-row px-5 gap-y-10 md:px-20 h-screen items-center'>
+        <div className='flex flex-col md:flex-row px-5 gap-y-10 h-screen items-center'>
             {/* this is absolute banner image */}
         
             <img className='hidden md:block md:translate-x-12 lg:translate-x-3/4 border absolute top-0 blur-sm rounded-bl-full rounded-br-full bg-white' src="https://i.ibb.co/wzv8r42/my-image.jpg" alt="" />

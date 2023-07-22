@@ -1,11 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
+import Account from "../components/CreateAccount/Account";
+import Login from "../components/CreateAccount/Login";
+import SignUp from "../components/CreateAccount/SignUp";
 import Home from "../components/Home/Home";
-
-import Account from "../components/Account/Account";
-import Login from "../components/Account/Login";
-import Register from "../components/Account/Register";
-import Main from "../components/Main";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import AddJob from "../components/pages/Dashboard/AddJob";
+import GetStarted from "../components/pages/GetStarted/GetStarted";
 import Job from "../components/pages/Job/Job";
+import CandidateRegistration from "../components/pages/Register/CandidateRegistration";
+import EmployerRegistration from "../components/pages/Register/EmployerRegistration";
+import DashboardLayout from "../layout/DashboardLayout";
+import Main from "../layout/Main";
 
 
 const router = createBrowserRouter([
@@ -27,10 +32,22 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/account/register',
-                        element: <Register></Register>
+                        element: <SignUp></SignUp>
                     },
                 ]
                     
+            },
+            {
+                path: '/register',
+                element: <GetStarted></GetStarted>
+            },
+            {
+                path: '/register/candidate',
+                element: <PrivateRoute><CandidateRegistration></CandidateRegistration></PrivateRoute>
+            },
+            {
+                path: '/register/employer',
+                element: <PrivateRoute><EmployerRegistration></EmployerRegistration></PrivateRoute>
             },
             {
                 path: '/jobs',
@@ -38,7 +55,17 @@ const router = createBrowserRouter([
             }
           
         ]
-    }
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard/add-job',
+                element: <PrivateRoute><AddJob></AddJob></PrivateRoute>
+            }
+        ]
+    },
 ])
 
 export default router;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from './Home/Header/Header';
+import Header from '../components/Home/Header/Header';
 
 const Main = () => {
     return (
-        <div>
+        <div className='md:mx-20'>
             <Header></Header>
             <Outlet></Outlet>
         </div>
