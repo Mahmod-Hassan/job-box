@@ -49,7 +49,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         logOut: (state) => {
-           state.user.email = "";
+           state.user = {email: "", roel: ""}
         },
         toggoleLoading: (state) => {
             state.isLoading = false;

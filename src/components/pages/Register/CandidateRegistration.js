@@ -1,14 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useRegisterMutation } from "../../Features/auth/authApi";
 
 const CandidateRegistration = () => {
-    const { register, handleSubmit } = useForm();
+    const {user:{email}} = useSelector((state) => state.auth);
+    const [postUser] = useRegisterMutation();
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            email,
+        }
+    });
     const countries = ["Bangladesh", "India", "Pakistan", "Srilanka", "Afganistan", "Mayanmar"]
 
     const onSubmit = (data) => {
-        console.log(data);
+        postUser({...data, role: 'candidate'})
     }
     return (
         <div className="my-10">
@@ -29,7 +37,7 @@ const CandidateRegistration = () => {
 
                     <div className="form-control">
                         <label className="label">Email</label>
-                        <input className="input input-bordered input-sm rounded-full" {...register("email", { required: true })} type="email" />
+                        <input className="input input-bordered input-sm rounded-full" {...register("email", { required: true })} type="email" readOnly />
                     </div>
 
                      {/* gender select field */}

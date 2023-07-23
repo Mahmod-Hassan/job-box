@@ -31,7 +31,7 @@ const AddJob = () => {
 
     // post the job data
     const onSubmit = (data) => {
-        postJob(data);
+        postJob({...data, applicants: [], queries: []});
     }
     return(
         <div className='w-2/3 mx-auto bg-rose-50/25 p-10 shadow-md mt-5'>
@@ -82,12 +82,12 @@ const AddJob = () => {
                 <div className='space-y-2'>
                         <label className='label'>Skills</label>
                         {skillFields.map((field, index) => (
-                        <div key={field.id} className="flex justify-between">
+                        <div key={field.id} className="flex items-center gap-5 justify-between">
                                 <input
                                 className="input input-bordered grow input-sm rounded-full"
                                 {...register(`skills.${index}.name`, { required: true })}
                                 type="text" />
-                                <button type="button" onClick={() => skillRemove(index)}><FaTrashCanArrowUp className='text-xl text-red-500'></FaTrashCanArrowUp></button>
+                                <button type="button" className='bg-red-100 w-10 h-10 rounded-full' onClick={() => skillRemove(index)}><FaTrashCanArrowUp className='text-xl text-red-500 ml-2'></FaTrashCanArrowUp></button>
                         </div>
                         ))}
                         <button 
@@ -100,12 +100,12 @@ const AddJob = () => {
                 <div  className='space-y-2'>
                         <label className="label">Responsibilities</label>
                         {resFields.map((field, index) => (
-                        <div key={field.id} className="flex justify-between">
+                        <div key={field.id} className="flex items-center gap-5 justify-between">
                                 <input
                                 className="input input-bordered grow input-sm rounded-full"
                                 {...register(`responsibilities.${index}.name`, { required: true })}
                                 type="text" />
-                                <button type="button" onClick={() => resRemove(index)}><FaTrashCanArrowUp className='text-xl text-red-500'></FaTrashCanArrowUp></button>
+                                <button type="button" onClick={() => resRemove(index)}><FaTrashCanArrowUp className='text-xl text-red-500 ml-2'></FaTrashCanArrowUp></button>
                         </div>
                         ))}
                         <button onClick={() => resAppend({ name: "" })} className='border border-indigo-400 rounded-full px-4 py-1 hover:bg-indigo-100'>Add Responsibility</button>
@@ -114,12 +114,12 @@ const AddJob = () => {
                 <div  className='space-y-2'>
                         <label className="label">Requerments</label>
                         {reqFields.map((field, index) => (
-                        <div key={field.id} className="flex justify-between">
+                        <div key={field.id} className="flex items-center gap-5 justify-between">
                                 <input
                                 className="input input-bordered grow input-sm rounded-full"
                                 {...register(`requirments.${index}.name`, { required: true })}
                                 type="text" />
-                                <button type="button" onClick={() => reqRemove(index)}><FaTrashCanArrowUp className='text-xl text-red-500'></FaTrashCanArrowUp></button>
+                                <button type="button" onClick={() => reqRemove(index)}><FaTrashCanArrowUp className='text-xl text-red-500 ml-2'></FaTrashCanArrowUp></button>
                         </div>
                         ))}
                         <button onClick={() => reqAppend({ name: "" })}  className='border border-indigo-400 rounded-full px-4 py-1 hover:bg-indigo-100'>Add Requirments</button>

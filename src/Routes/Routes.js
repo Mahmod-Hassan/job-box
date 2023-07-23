@@ -5,8 +5,10 @@ import SignUp from "../components/CreateAccount/SignUp";
 import Home from "../components/Home/Home";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import AddJob from "../components/pages/Dashboard/AddJob";
+import AppliedJobs from "../components/pages/Dashboard/AppliedJobs";
 import GetStarted from "../components/pages/GetStarted/GetStarted";
-import Job from "../components/pages/Job/Job";
+import JobDetails from "../components/pages/Job/JobDetails";
+import Jobs from "../components/pages/Job/Jobs";
 import CandidateRegistration from "../components/pages/Register/CandidateRegistration";
 import EmployerRegistration from "../components/pages/Register/EmployerRegistration";
 import DashboardLayout from "../layout/DashboardLayout";
@@ -51,7 +53,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/jobs',
-                element: <Job></Job>
+                element: <PrivateRoute><Jobs></Jobs></PrivateRoute>
+            },
+            {
+                path: '/job-details/:id',
+                element: <JobDetails></JobDetails>
             }
           
         ]
@@ -62,7 +68,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/add-job',
-                element: <PrivateRoute><AddJob></AddJob></PrivateRoute>
+                element: <AddJob></AddJob>
+            },
+            {
+                path: '/dashboard/applied-jobs',
+                element: <AppliedJobs></AppliedJobs>
             }
         ]
     },

@@ -2,20 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 import { HiOutlineLockClosed, HiOutlineMail, HiOutlineUser } from 'react-icons/hi';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createUser } from '../Features/auth/authSlice';
 
 
 const SignUp = () => {
     const { handleSubmit, register, control, formState: { errors }} = useForm();
-
+    const {user} = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const password = useWatch({control, name: "password"});
     const confirmPassword = useWatch({control, name: "confirmPassword"});
     const [disabled, setDisabled] = useState(true);
     const dispatch = useDispatch();
-
+console.log(user?.email);
     useEffect(() => {
+        if(user?.email){
+            navigate(from, {replace: true});
+        }
         if(password !== undefined && password !== "" && 
         confirmPassword !== undefined && confirmPassword !== "" &&
         password === confirmPassword

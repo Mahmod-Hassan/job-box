@@ -15,7 +15,12 @@ const LeftSideBar = () => {
             {
                 user?.role === 'employer' &&  <Link  to="/dashboard/add-job">
                 <button className='bg-indigo-100 w-full py-1 rounded-full'>Add Job</button>
-          </Link>
+               </Link>
+            }
+            {
+                user?.role === 'candidate' &&  <Link  to="/dashboard/applied-jobs">
+                <button className='bg-indigo-100 w-full py-1 rounded-full'>Applied Jobs</button>
+               </Link>
             }
           
         </div>
